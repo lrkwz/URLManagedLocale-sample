@@ -11,7 +11,9 @@
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-
+	<view-controller path="secure/*" view-name="secure/index"/>
+	<view-controller path="secure/extreme/*" view-name="secure/extreme/index"/>
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -24,23 +26,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.github.seoapp" />
+	<context:component-scan base-package="com.github" />
 
-	<beans:bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver"
+	<beans:bean
+		class="com.github.lrkwz.web.servlet.handler.i18n.UrlLocaleResolver"
 		id="localeResolver">
 		<beans:property name="cookieName" value="locale" />
-		<beans:property name="cookieMaxAge" value="31536000" />
 	</beans:bean>
 
 	<interceptors>
 		<beans:bean
-			class="com.github.lrkwz.web.servlet.handler.i18.UrlLocaleInitializerInterceptor">
-			<beans:property name="localeChangeUrl" value="/languages.html" />
-			<beans:property name="localeChangeInterceptor">
-				<beans:bean
-					class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
-					p:paramName="lang" />
-			</beans:property>
+			class="com.github.lrkwz.web.servlet.handler.i18n.UrlLocaleChangeInterceptor">
 		</beans:bean>
 	</interceptors>
+
 </beans:beans>
