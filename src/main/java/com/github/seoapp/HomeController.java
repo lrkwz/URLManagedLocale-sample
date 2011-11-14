@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -23,11 +24,18 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	@RequestMapping(value = "/{user_locale}/home", method = RequestMethod.GET)
+	public String home(HttpServletRequest request, @PathVariable("user_locale") Locale user_locale, Model model) {
+		logger.debug("User requested locale {}", user_locale);
+		return processRequest(request, model);
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, Model model) {
+		return processRequest(request, model);
+	}
+
+	private String processRequest(HttpServletRequest request, Model model) {
 		logger.info(
 				"Welcome home! the client locale is {}",
 				RequestContextUtils.getLocale(request) != null ? RequestContextUtils

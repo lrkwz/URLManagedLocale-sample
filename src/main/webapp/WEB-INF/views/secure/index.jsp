@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.github.lrkwz.web.servlet.handler.i18n.UrlLocaleChangeInterceptor" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
@@ -7,6 +9,8 @@
 This is a protected page. You can get to me if you've been remembered,
 or if you've authenticated this session.
 </p>
+	<p>Your locale is ${locale}</p>
+
 
 <sec:authorize access="hasRole('ROLE_SUPERVISOR')">
     You are a supervisor! You can therefore see the <a href="extreme/index.jsp">extremely secure page</a>.<br/><br/>
