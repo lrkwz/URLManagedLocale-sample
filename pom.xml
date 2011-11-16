@@ -88,7 +88,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.lrkwz</groupId>
-			<artifactId>urllocaleinterceptor</artifactId>
+			<artifactId>urlmanaged-locale</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
